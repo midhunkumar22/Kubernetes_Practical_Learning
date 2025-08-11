@@ -1,0 +1,37 @@
+# Example 2: Multi-Container Pod
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: multi-container-pod
+  labels:
+    app: multi-app
+spec:
+  containers:
+  # Main application container
+  - name: web-app
+    image: nginx:alpine
+    ports:
+    - containerPort: 80
+    volumeMounts:
+    - name: shared-data
+      mountPath: /usr/share/nginx/html
+  
+  # Sidecar container that generates content
+  - name: content-generator
+    image: busybox
+    command: ['sh', '-c']
+    args:
+    - |
+      while true; do
+        echo "<h1>Hello from Multi-Container Pod!</h1>" > /data/index.html
+        echo "<p>Generated at: $(date)</p>" >> /data/index.html
+        sleep 30
+      done
+    volumeMounts:
+    - name: shared-data
+      mountPath: /data
+  
+  volumes:
+  - name: shared-data
+    emptyDir: {}
