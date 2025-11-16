@@ -26,35 +26,34 @@ Welcome to your comprehensive Kubernetes learning workspace! This repository is 
 
 ## 🛠️ Prerequisites
 
-### Required Tools
+Before starting, you need to set up a local Kubernetes environment.
+
+### Quick Setup
+
+**📖 Follow the complete setup guide: [SETUP.md](SETUP.md)**
+
+The setup guide includes:
+- ✅ Step-by-step installation for macOS, Linux, and Windows
+- ✅ Multiple Kubernetes options (Minikube, Docker Desktop, Kind)
+- ✅ Helm installation
+- ✅ Verification steps
+- ✅ Troubleshooting common issues
+- ✅ Useful tools and aliases
+
+### Quick Install (macOS)
+
 ```bash
-# 1. Install Docker
-# Visit: https://docs.docker.com/get-docker/
+# Install tools
+brew install kubectl minikube helm
 
-# 2. Install kubectl
-# macOS:
-brew install kubectl
+# Start Kubernetes cluster
+minikube start --driver=docker
 
-# 3. Install a local Kubernetes cluster (choose one):
-# Option A: Docker Desktop (enable Kubernetes in preferences)
-# Option B: minikube
-brew install minikube
-
-# Option C: kind
-brew install kind
+# Verify installation
+kubectl get nodes
 ```
 
-### Verify Installation
-```bash
-# Check Docker
-docker --version
-
-# Check kubectl
-kubectl version --client
-
-# Check local cluster (after setup)
-kubectl cluster-info
-```
+**For detailed instructions, see [SETUP.md](SETUP.md)**
 
 ## 🚀 Quick Start
 
